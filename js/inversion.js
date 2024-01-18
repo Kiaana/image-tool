@@ -103,6 +103,11 @@ document.addEventListener("DOMContentLoaded", function () {
             tr.remove();
             // Remove the file from the uploadedFiles array
             delete uploadedFiles[tr.dataset.fileIndex];
+            // Check if the "Start Processing" button should be hidden
+            if (imageList.querySelectorAll('tr').length === 0) {
+                startProcessingButton.classList.add('hidden');
+                startProcessingButton.style.opacity = '0';
+            }
         });
         removeCell.appendChild(removeButton);
 
