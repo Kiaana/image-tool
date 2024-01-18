@@ -1,0 +1,19 @@
+#card-preview {
+    position: relative;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.image-preview-container img {
+    width: 100%;
+    display: block; /* Remove extra space below the image */
+}
+
+.text-preview-container {
+    padding: 16px;
+    text-align: center;
+}
+
+/* Additional styling as needed... */
