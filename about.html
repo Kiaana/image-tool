@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About PianoPixel - Image Processing Redefined</title>
+    <link rel="icon" href="./images/favicon.ico" type="image/png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.4/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css">
+    <script src="https://kit.fontawesome.com/4daa3038ef.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body class="bg-gray-100">
+
+    <!-- Placeholder for Header, load by js -->
+    <div id="header-placeholder"></div>
+
+    <!-- Hero Section -->
+    <section class="bg-white body-font">
+        <div class="container mx-auto flex px-5 py-12 items-center justify-center flex-col">
+            <div class="text-center lg:w-2/3 w-full">
+                <h1 class="title-font sm:text-6xl text-5xl mb-4 font-medium text-gray-900">About PianoPixel</h1>
+                <p class="mb-8 leading-relaxed">
+                    PianoPixel is where technology meets artistry. Our platform redefines image processing with a suite of powerful tools, designed for creators who value simplicity and efficiency.
+                </p>
+                <div class="flex justify-center">
+                    <a href="./index.html#discover-tools" class="inline-flex text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded text-lg">Meet Our Tools</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tool Steps Section -->
+    <section class="bg-gray-100">
+        <div class="container mx-auto px-5 py-12">
+            <div class="flex flex-wrap -m-4 justify-center">
+                <!-- Step 1: Upload -->
+                <div class="p-4 md:w-1/4 w-full">
+                    <div class="border-2 border-gray-200 px-4 py-6 rounded-lg bg-gradient-to-r from-blue-400 to-blue-600 text-white text-center hover:shadow-lg transform hover:scale-105 transition duration-300">
+                        <i class="fas fa-file-upload text-5xl mb-3 inline-block"></i>
+                        <h2 class="title-font font-medium text-3xl">1. Upload</h2>
+                        <p class="leading-relaxed">Start by uploading your images directly into our secure platform.</p>
+                    </div>
+                </div>
+
+                <!-- Step 2: Edit -->
+                <div class="p-4 md:w-1/4 w-full">
+                    <div class="border-2 border-gray-200 px-4 py-6 rounded-lg bg-gradient-to-r from-purple-400 to-purple-600 text-white text-center hover:shadow-lg transform hover:scale-105 transition duration-300">
+                        <i class="fas fa-edit text-5xl mb-3 inline-block"></i>
+                        <h2 class="title-font font-medium text-3xl">2. Edit</h2>
+                        <p class="leading-relaxed">Utilize our intuitive tools to enhance and manipulate your images.</p>
+                    </div>
+                </div>
+
+                <!-- Step 3: Preview -->
+                <div class="p-4 md:w-1/4 w-full">
+                    <div class="border-2 border-gray-200 px-4 py-6 rounded-lg bg-gradient-to-r from-yellow-400 to-yellow-600 text-white text-center hover:shadow-lg transform hover:scale-105 transition duration-300">
+                        <i class="fas fa-eye text-5xl mb-3 inline-block"></i>
+                        <h2 class="title-font font-medium text-3xl">3. Preview</h2>
+                        <p class="leading-relaxed">Review your edits in real-time to ensure every detail is perfect.</p>
+                    </div>
+                </div>
+
+                <!-- Step 4: Download -->
+                <div class="p-4 md:w-1/4 w-full">
+                    <div class="border-2 border-gray-200 px-4 py-6 rounded-lg text-center hover:shadow-lg transform hover:scale-105 transition duration-300"
+                        style="background-image: linear-gradient(to right, #fa7d09, #d62976);">
+                        <i class="fas fa-download text-5xl mb-3 inline-block text-white"></i>
+                        <h2 class="title-font font-medium text-3xl text-white">4. Download</h2>
+                        <p class="leading-relaxed text-white">Export your creations with just a click, ready for any platform.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Placeholder for Footer -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Back to Top Button -->
+    <button onclick="topFunction()" id="backToTop" title="Go to top" class="hidden">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="./js/loadHtml.js"></script>
+    <script src="./js/main.js"></script>
+
+    <!-- AOS Animation -->
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+</html>
