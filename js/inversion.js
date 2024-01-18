@@ -42,7 +42,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 var downloadButton = setupDownloadButton(invertedImageUrl, 'inverted-' + file.name);
                 row.cells[1].innerHTML = ''; // Clear the "Process" button
                 row.cells[1].appendChild(downloadButton);
+                row.setAttribute('data-processed', 'true'); // Mark the row as processed
                 processNextImage(); // Process the next image in the queue
+                checkAllImagesProcessed(); // Check if all images are processed
             };
             img.src = e.target.result;
 
@@ -122,9 +124,9 @@ document.addEventListener("DOMContentLoaded", function () {
             delete uploadedFiles[tr.dataset.fileIndex];
             // Check if the "Start Processing" button should be hidden
             if (imageList.querySelectorAll('tr').length === 0) {
-                checkButtons(startProcessingButton, 'hide');
-                checkButtons(downloadAsZipButton, 'hide');
-                checkButtons(clearAllButton, 'hide');
+                hideButtons(startProcessingButton, 'hide');
+                hideButtons(downloadAsZipButton, 'hide');
+                hideButtons(clearAllButton, 'hide');
             }
         });
         removeCell.appendChild(removeButton);
@@ -155,27 +157,33 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!isProcessing) {
             processNextImage();
         }
-        // Show the "Download All as Zip" button after processing
-        checkButtons(downloadAsZipButton);
-        // Show the "Clear All" button after processing
-        checkButtons(clearAllButton);
-
     });
 
-    // Check and show Buttons
-    function checkButtons(button, hideOrShow = 'show') {
-        // Check if the button is visible
-        if (hideOrShow === 'hide') {
-            if (!button.classList.contains('hidden')) {
-                button.classList.add('hidden');
-                button.style.opacity = '0';
-            }
+    // Check if all images are processed
+    function checkAllImagesProcessed() {
+        // Checks if there are any images left to be processed
+        var unprocessedImages = imageList.querySelectorAll('tr:not([data-processed="true"])');
+        if (unprocessedImages.length === 0) {
+            // If all images are processed, show the buttons
+            showButtons(downloadAsZipButton);
+            showButtons(clearAllButton);
+            hideButtons(startProcessingButton);
         }
-        else {
-            if (button.classList.contains('hidden')) {
-                button.classList.remove('hidden');
-                button.style.opacity = '1';
-            }
+    }
+
+    function showButtons(button) {
+        // Show the button
+        if (button.classList.contains('hidden')) {
+            button.classList.remove('hidden');
+            button.style.opacity = '1';
+        }
+    }
+
+    function hideButtons(button) {
+        // Hide the button
+        if (!button.classList.contains('hidden')) {
+            button.classList.add('hidden');
+            button.style.opacity = '0';
         }
     }
 
@@ -241,7 +249,7 @@ document.addEventListener("DOMContentLoaded", function () {
             })(file); // Immediately invoke the function passing the current file
             reader.readAsDataURL(file);
         }
-        checkButtons(startProcessingButton);
+        showButtons(startProcessingButton);
     }
 
 
