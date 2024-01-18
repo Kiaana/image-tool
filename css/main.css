@@ -1,0 +1,29 @@
+a {
+    transition: color 0.3s;
+}
+a:hover {
+    color: #667eea; /* Or any color you prefer */
+}
+
+/* Additional styles for back to top button */
+#back-to-top::after {
+    content: attr(title);
+    position: absolute;
+    white-space: nowrap;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #666;
+    color: white;
+    padding: 5px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+#back-to-top:hover::after {
+    visibility: visible;
+    opacity: 1;
+}

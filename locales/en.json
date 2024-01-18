@@ -1,0 +1,14 @@
+{
+    "header": {
+        "home": "Home",
+        "about": "About",
+        "contact": "Contact"
+    },
+    "hero": {
+        "title": "Welcome to PianoPixel - Our Image Processing Suite",
+        "subtitle": "Explore a variety of tools designed to enhance your images effortlessly."
+    },
+    "footer": {
+        "copyright": "© 2024 PianoPixel — All rights reserved."
+    }
+}
