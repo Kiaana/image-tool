@@ -7,7 +7,23 @@ document.addEventListener("DOMContentLoaded", function () {
     var downloadAsZipButton = document.getElementById('download-as-zip'); // Make sure this ID matches your button
     var clearAllButton = document.getElementById('clear-all'); // Make sure this ID matches your button
     var uploadedFiles = [];
+    // Use this array to store the files that are being processed
+    var processingQueue = [];
+    var isProcessing = false;
 
+    function processNextImage() {
+        if (processingQueue.length === 0) {
+            isProcessing = false;
+            return;
+        }
+        isProcessing = true;
+        var fileIndex = processingQueue.shift();
+        var fileToProcess = uploadedFiles[fileIndex];
+        var tr = imageList.querySelector(`tr[data-file-index="${fileIndex}"]`);
+        if (fileToProcess && tr) {
+            processImageRow(tr, fileToProcess);
+        }
+    }
 
     // Function to invert image colors and update the row
     function processImageRow(row, file) {
@@ -26,6 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 var downloadButton = setupDownloadButton(invertedImageUrl, 'inverted-' + file.name);
                 row.cells[1].innerHTML = ''; // Clear the "Process" button
                 row.cells[1].appendChild(downloadButton);
+                processNextImage(); // Process the next image in the queue
             };
             img.src = e.target.result;
 
@@ -131,19 +148,16 @@ document.addEventListener("DOMContentLoaded", function () {
             if (tr.querySelector('a')) return;
             // Retrieve the file index from the tr's data attribute
             var fileIndex = tr.dataset.fileIndex;
-            // Retrieve the file from the uploadedFiles array
-            var fileToProcess = uploadedFiles[fileIndex];
-            // Check if the file exists and then process it
-            if (fileToProcess) {
-                processImageRow(tr, fileToProcess);
+            if (!processingQueue.includes(fileIndex)) {
+                processingQueue.push(fileIndex);
             }
         });
-
+        if (!isProcessing) {
+            processNextImage();
+        }
         // Show the "Download All as Zip" button after processing
-        // Check if the button is visible
         checkButtons(downloadAsZipButton);
         // Show the "Clear All" button after processing
-        // Check if the button is visible
         checkButtons(clearAllButton);
 
     });
