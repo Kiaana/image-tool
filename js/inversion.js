@@ -238,6 +238,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function handleFiles(e) {
         var files = e.target.files || e.dataTransfer.files;
+        if (files.length > 0) {
+            document.getElementById('scroll-prompt-section').classList.remove('hidden');
+            document.getElementById('image-management').classList.remove('hidden');
+        }
         for (let i = 0, len = files.length; i < len; i++) { // Changed var to let for block-scoping
             let file = files[i]; // Using let ensures file is block-scoped
             console.log(file);
@@ -274,5 +278,3 @@ document.addEventListener("DOMContentLoaded", function () {
 
     setupDragAndDrop();
 });
-
-
