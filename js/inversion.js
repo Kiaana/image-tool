@@ -7,14 +7,14 @@ document.addEventListener("DOMContentLoaded", function () {
     var downloadAsZipButton = document.getElementById('download-as-zip'); // Make sure this ID matches your button
     var clearAllButton = document.getElementById('clear-all'); // Make sure this ID matches your button
     var uploadedFiles = [];
-    
+
 
     // Function to invert image colors and update the row
     function processImageRow(row, file) {
         var reader = new FileReader();
-        reader.onload = function(e) {
+        reader.onload = function (e) {
             var img = new Image();
-            img.onload = function() {
+            img.onload = function () {
                 // Invert image colors
                 var invertedImageUrl = invertImageColors(img);
 
@@ -115,14 +115,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Bind the process button event after appending the row
         var processButton = processCell.querySelector('.process-button');
-        processButton.addEventListener('click', function() {
+        processButton.addEventListener('click', function () {
             processImageRow(tr, file);
             console.log('Processing image: ' + file.name);
         });
     }
 
     // Start processing all images
-    startProcessingButton.addEventListener('click', function() {
+    startProcessingButton.addEventListener('click', function () {
         // Get all the tr elements
         var rows = imageList.querySelectorAll('tr');
         rows.forEach(tr => {
@@ -148,18 +148,25 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Check and show Buttons
-    function checkButtons(button) {
+    function checkButtons(button, hideOrShow = 'show') {
         // Check if the button is visible
-        if (button.classList.contains('hidden')) {
-            button.classList.remove('hidden');
-            setTimeout(() => button.style.opacity = '1', 0); // Delay required to trigger fade-in animation
+        if (hideOrShow === 'hide') {
+            if (!button.classList.contains('hidden')) {
+                button.classList.add('hidden');
+                button.style.opacity = '0';
+            }
+        }
+        else {
+            if (button.classList.contains('hidden')) {
+                button.classList.remove('hidden');
+                button.style.opacity = '1';
+            }
         }
     }
 
-
     // Buttons functionality
     // Clear all images
-    clearAllButton.addEventListener('click', function() {
+    clearAllButton.addEventListener('click', function () {
         // Get all the tr elements
         var rows = imageList.querySelectorAll('tr');
         rows.forEach(tr => {
@@ -184,14 +191,14 @@ document.addEventListener("DOMContentLoaded", function () {
     function downloadAllAsZip() {
         var zip = new JSZip();
         var images = document.querySelectorAll('#image-list tbody img');
-        images.forEach(function(img, index) {
+        images.forEach(function (img, index) {
             var fileName = 'inverted-image-' + (index + 1) + '.png';
             var dataUrl = img.src;
             var base64Data = dataUrl.replace(/^data:image\/(png|jpg);base64,/, "");
-            zip.file(fileName, base64Data, {base64: true});
+            zip.file(fileName, base64Data, { base64: true });
         });
-    
-        zip.generateAsync({type:"blob"}).then(function(content) {
+
+        zip.generateAsync({ type: "blob" }).then(function (content) {
             saveAs(content, "inverted-images.zip");
         });
     }
@@ -212,8 +219,8 @@ document.addEventListener("DOMContentLoaded", function () {
             let file = files[i]; // Using let ensures file is block-scoped
             console.log(file);
             var reader = new FileReader();
-            reader.onload = (function(file) { // Wrap the function with an IIFE
-                return function(e) {
+            reader.onload = (function (file) { // Wrap the function with an IIFE
+                return function (e) {
                     createTableRow(file, e.target.result);
                 };
             })(file); // Immediately invoke the function passing the current file
@@ -221,7 +228,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         checkButtons(startProcessingButton);
     }
-    
+
 
     function handleDragOver(e) {
         e.preventDefault();
