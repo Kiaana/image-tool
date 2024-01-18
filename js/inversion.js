@@ -85,9 +85,9 @@ document.addEventListener("DOMContentLoaded", function () {
         var thumbnailCell = tr.insertCell();
         thumbnailCell.classList.add('px-6', 'py-4', 'whitespace-no-wrap', 'text-sm', 'leading-5');
         thumbnailCell.innerHTML = `<div class="flex items-center">
-                                      <img src="${imageUrl}" alt="${file.name}" class="h-20 w-20 object-cover mr-4">
-                                      <span>${file.name}</span>
-                                   </div>`;
+                                        <img src="${imageUrl}" alt="${file.name}" class="h-20 w-20 object-cover mr-4">
+                                        <span class="file-name truncate">${file.name}</span>
+                                    </div>`;
         // Process cell with the process button
         var processCell = tr.insertCell();
         processCell.classList.add('px-6', 'py-4', 'whitespace-no-wrap', 'text-right', 'text-sm', 'leading-5');

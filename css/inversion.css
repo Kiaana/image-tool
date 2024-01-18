@@ -1,0 +1,7 @@
+.file-name {
+    max-width: 150px; /* adjust as necessary */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
